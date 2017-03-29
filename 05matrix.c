@@ -42,7 +42,7 @@ int main(void)
 			}
 		}
 	}
-	gettimeofday(&t1, NULL);
+	gettimeofday(&t2, NULL);
 	diff = (t2.tv_sec+t2.tv_usec*0.000001)-(t1.tv_sec+t1.tv_usec*0.000001);
 	printf("Diff: %f\n", diff);
 
