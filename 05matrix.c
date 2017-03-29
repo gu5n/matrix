@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <sys/time.h>
 
 //void mult();
 
@@ -12,6 +13,8 @@ int main(void)
 	int A[n][m];
 	int B[n][m];
 	int C[n][m];
+	struct timeval t1, t2;
+	double diff;
 
 	srand(time(NULL));
 	//Matrix A und B befüllen und C leeren
@@ -25,7 +28,10 @@ int main(void)
 		}
 	}
 	//mult();
-	
+
+
+
+	gettimeofday(&t1, NULL);
 	for(i = 0; i < n; i++)
 	{
 		for(k = 0; k < m; k++)
@@ -36,8 +42,11 @@ int main(void)
 			}
 		}
 	}
+	gettimeofday(&t1, NULL);
+	diff = (t2.tv_sec+t2.tv_usec*0.000001)-(t1.tv_sec+t1.tv_usec*0.000001);
+	printf("Diff: %f\n", diff);
 
-///////////////////////print A, B, C//////////////////////////git test
+///////////////////////print A, B, C//////////////////////////
 /*	for(i = 0; i < n; i++)
 	{
 		for(j = 0; j < m; j++)
