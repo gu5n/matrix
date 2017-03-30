@@ -34,8 +34,10 @@ int main(void)
 	}
 	
 	gettimeofday(&t1, NULL);
-	mult1();
-	mult2();
+	pthread_create(&thread1, NULL, (void *)mult1, NULL);
+	pthread_create(&thread2, NULL, (void *)mult2, NULL);
+	pthread_join( thread1, NULL);
+	pthread_join( thread2, NULL);
 	gettimeofday(&t2, NULL);
 	
 
