@@ -3,12 +3,18 @@
 #include <time.h>
 #include <sys/time.h>
 #include <pthread.h>
-#define N 3
-#define M 3
+#define N 8
+#define M 8
 
 
 void mult1();
 void mult2();
+void mult3();
+void mult4();
+void mult5();
+void mult6();
+void mult7();
+void mult8();
 
 int A[N][M];
 int B[N][M];
@@ -16,7 +22,7 @@ int C[N][M];
 
 int main(void)
 {
-	pthread_t thread1, thread2;
+	pthread_t thread1, thread2, thread3, thread4, thread5, thread6, thread7, thread8;
 	int i, j;
 	struct timeval t1, t2;
 	double diff;
@@ -36,8 +42,20 @@ int main(void)
 	gettimeofday(&t1, NULL);
 	pthread_create(&thread1, NULL, (void *)mult1, NULL);
 	pthread_create(&thread2, NULL, (void *)mult2, NULL);
+	pthread_create(&thread3, NULL, (void *)mult3, NULL);
+	pthread_create(&thread4, NULL, (void *)mult4, NULL);
+	pthread_create(&thread5, NULL, (void *)mult5, NULL);
+	pthread_create(&thread6, NULL, (void *)mult6, NULL);
+	pthread_create(&thread7, NULL, (void *)mult7, NULL);
+	pthread_create(&thread8, NULL, (void *)mult8, NULL);
 	pthread_join( thread1, NULL);
 	pthread_join( thread2, NULL);
+	pthread_join( thread3, NULL);
+	pthread_join( thread4, NULL);
+	pthread_join( thread5, NULL);
+	pthread_join( thread6, NULL);
+	pthread_join( thread7, NULL);
+	pthread_join( thread8, NULL);
 	gettimeofday(&t2, NULL);
 	
 
@@ -93,7 +111,7 @@ void mult1()
 	int i, j, k;
 	for(i = 0; i < N; i++)
 	{
-		for(k = 0; k < (M/2); k++)
+		for(k = 0; k < (M/8); k++)
 		{		
 			for(j = 0; j < M; j++)
 			{
@@ -108,7 +126,98 @@ void mult2()
 	int i, j, k;
 	for(i = 0; i < N; i++)
 	{
-		for(k = (M/2); k < M; k++)
+		for(k = (M/8); k < (M/4); k++)
+		{		
+			for(j = 0; j < M; j++)
+			{
+				C[i][k]=C[i][k]+A[i][j]*B[j][k];
+			}
+		}
+	}
+}
+
+void mult3()
+{
+	int i, j, k;
+	for(i = 0; i < N; i++)
+	{
+		for(k = (M/4); k < (3*M/8); k++)
+		{		
+			for(j = 0; j < M; j++)
+			{
+				C[i][k]=C[i][k]+A[i][j]*B[j][k];
+			}
+		}
+	}
+}
+
+void mult4()
+{
+	int i, j, k;
+	for(i = 0; i < N; i++)
+	{
+		for(k = (3*M/8); k < (M/2); k++)
+		{		
+			for(j = 0; j < M; j++)
+			{
+				C[i][k]=C[i][k]+A[i][j]*B[j][k];
+			}
+		}
+	}
+}
+
+void mult5()
+{
+	int i, j, k;
+	for(i = 0; i < N; i++)
+	{
+		for(k = (M/2); k < (5*M/8); k++)
+		{		
+			for(j = 0; j < M; j++)
+			{
+				C[i][k]=C[i][k]+A[i][j]*B[j][k];
+			}
+		}
+	}
+}
+
+void mult6()
+{
+	int i, j, k;
+	for(i = 0; i < N; i++)
+	{
+		for(k = (5*M/8); k < (3*M/4); k++)
+		{		
+			for(j = 0; j < M; j++)
+			{
+				C[i][k]=C[i][k]+A[i][j]*B[j][k];
+			}
+		}
+	}
+}
+
+
+void mult7()
+{
+	int i, j, k;
+	for(i = 0; i < N; i++)
+	{
+		for(k = (3*M/4); k < (7*M/8); k++)
+		{		
+			for(j = 0; j < M; j++)
+			{
+				C[i][k]=C[i][k]+A[i][j]*B[j][k];
+			}
+		}
+	}
+}
+
+void mult8()
+{
+	int i, j, k;
+	for(i = 0; i < N; i++)
+	{
+		for(k = (7*M/8); k < M; k++)
 		{		
 			for(j = 0; j < M; j++)
 			{
