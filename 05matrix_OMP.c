@@ -1,10 +1,17 @@
+/* This program generates matrix A, B and C, fills them with random numbers */
+/* and multiplies A and B. The multiplication is parallelised using openMP. */
+/* The elapsed time to fill matrix C will be prompted.                      */
+/* Version: 0.1                                                             */
+/* Author: Christoph Ablöscher                                              */
+/* Date 03.04.17                                                            */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <sys/time.h>
 #include <omp.h>
-#define N 8
-#define M 8
+#define N 800
+#define M 800
 
 
 void mult1();
@@ -31,9 +38,11 @@ int main(void)
 		}
 	}
 	
-	gettimeofday(&t1, NULL);
+	if(gettimeofday(&t1, NULL) != 0)
+		perror("errno");
 	mult1();
-	gettimeofday(&t2, NULL);
+	if(gettimeofday(&t2, NULL) != 0)
+		perror("errno");
 	
 
 
@@ -50,10 +59,10 @@ int main(void)
 	}
 	gettimeofday(&t2, NULL); */
 	diff = (t2.tv_sec+t2.tv_usec*0.000001)-(t1.tv_sec+t1.tv_usec*0.000001);
-	printf("Diff: %f\n", diff);
+	printf("elapsed time: %f\n", diff);
 
 ///////////////////////print A, B, C//////////////////////////
-	for(i = 0; i < N; i++)
+/*	for(i = 0; i < N; i++)
 	{
 		for(j = 0; j < M; j++)
 		{
@@ -77,7 +86,7 @@ int main(void)
 		}
 		printf("\n");
 	}
-
+*/
 	exit(0);
 }
 
