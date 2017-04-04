@@ -1,10 +1,12 @@
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <sys/time.h>
 #include <pthread.h>
-#define N 8
-#define M 8
+#define N 800
+#define M 800
 
 
 void mult1();
@@ -39,24 +41,42 @@ int main(void)
 		}
 	}
 	
-	gettimeofday(&t1, NULL);
-	pthread_create(&thread1, NULL, (void *)mult1, NULL);
-	pthread_create(&thread2, NULL, (void *)mult2, NULL);
-	pthread_create(&thread3, NULL, (void *)mult3, NULL);
-	pthread_create(&thread4, NULL, (void *)mult4, NULL);
-	pthread_create(&thread5, NULL, (void *)mult5, NULL);
-	pthread_create(&thread6, NULL, (void *)mult6, NULL);
-	pthread_create(&thread7, NULL, (void *)mult7, NULL);
-	pthread_create(&thread8, NULL, (void *)mult8, NULL);
-	pthread_join( thread1, NULL);
-	pthread_join( thread2, NULL);
-	pthread_join( thread3, NULL);
-	pthread_join( thread4, NULL);
-	pthread_join( thread5, NULL);
-	pthread_join( thread6, NULL);
-	pthread_join( thread7, NULL);
-	pthread_join( thread8, NULL);
-	gettimeofday(&t2, NULL);
+	if(gettimeofday(&t1, NULL) != 0)
+		perror("errno");
+	if(pthread_create(&thread1, NULL, (void *)mult1, NULL) != 0)
+		perror("thread create error");
+	if(pthread_create(&thread2, NULL, (void *)mult2, NULL) != 0)
+		perror("thread create error");
+	if(pthread_create(&thread3, NULL, (void *)mult3, NULL) != 0)
+		perror("thread create error");
+	if(pthread_create(&thread4, NULL, (void *)mult4, NULL) != 0)
+		perror("thread create error");
+	if(pthread_create(&thread5, NULL, (void *)mult5, NULL) != 0)
+		perror("thread create error");
+	if(pthread_create(&thread6, NULL, (void *)mult6, NULL) != 0)
+		perror("thread create error");
+	if(pthread_create(&thread7, NULL, (void *)mult7, NULL) != 0)
+		perror("thread create error");
+	if(pthread_create(&thread8, NULL, (void *)mult8, NULL) != 0)
+		perror("thread create error");
+	if(pthread_join( thread1, NULL) != 0)
+		perror("thread join error");
+	if(pthread_join( thread2, NULL) != 0)
+		perror("thread join error");
+	if(pthread_join( thread3, NULL) != 0)
+		perror("thread join error");
+	if(pthread_join( thread4, NULL) != 0)
+		perror("thread join error");
+	if(pthread_join( thread5, NULL) != 0)
+		perror("thread join error");
+	if(pthread_join( thread6, NULL) != 0)
+		perror("thread join error");
+	if(pthread_join( thread7, NULL) != 0)
+		perror("thread join error");
+	if(pthread_join( thread8, NULL) != 0)
+		perror("thread join error");
+	if(gettimeofday(&t2, NULL) != 0)
+		perror("errno");
 	
 
 
@@ -73,10 +93,10 @@ int main(void)
 	}
 	gettimeofday(&t2, NULL); */
 	diff = (t2.tv_sec+t2.tv_usec*0.000001)-(t1.tv_sec+t1.tv_usec*0.000001);
-	printf("Diff: %f\n", diff);
+	printf("elapsed time: %f\n", diff);
 
 ///////////////////////print A, B, C//////////////////////////
-	for(i = 0; i < N; i++)
+/*	for(i = 0; i < N; i++)
 	{
 		for(j = 0; j < M; j++)
 		{
@@ -100,7 +120,7 @@ int main(void)
 		}
 		printf("\n");
 	}
-
+*/
 	exit(0);
 }
 
