@@ -1,4 +1,9 @@
-
+/* This program generates matrix A, B and C, fills them with random numbers */
+/* and multiplies A and B. The multiplication is split up into 8 threads.   */
+/* The elapsed time to fill matrix C will be prompted.                      */
+/* Version: 0.1                                                             */
+/* Author: Christoph Ablöscher                                              */
+/* Date 03.04.17                                                            */
 
 #include <stdio.h>
 #include <stdlib.h>
